@@ -37,6 +37,20 @@
       "Resource": [
         "arn:aws:codebuild:${aws_region}:${aws_account}:report-group/${build_project_name}-*"
       ]
+    },
+    {
+      "Action": [
+        "ssm:DescribeParameters"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "ssm:GetParameters"
+      ],
+      "Effect": "Allow",
+      "Resource": "${ssm_parameter_arn}"
     }
   ],
   "Version": "2012-10-17"

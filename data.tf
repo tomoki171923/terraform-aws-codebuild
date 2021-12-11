@@ -10,5 +10,6 @@ data "template_file" "codebuild_policy" {
     aws_region         = data.aws_region.current.name
     aws_account        = data.aws_caller_identity.current.account_id
     build_project_name = var.build_project_name
+    ssm_parameter_arn  = aws_ssm_parameter.this.arn
   }
 }
