@@ -17,8 +17,8 @@ resource "aws_codebuild_project" "this" {
   }
 
   cache {
-    type  = "LOCAL"
-    modes = ["LOCAL_DOCKER_LAYER_CACHE", "LOCAL_SOURCE_CACHE"]
+    type  = var.cache_type
+    modes = var.cache_modes
   }
 
   environment {
@@ -46,6 +46,7 @@ resource "aws_codebuild_project" "this" {
       fetch_submodules = true
     }
   }
+  source_version = var.source_version
 
   tags = var.tags
 }
