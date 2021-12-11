@@ -20,8 +20,8 @@ module "codebuild_role" {
     "codebuild.amazonaws.com"
   ]
   create_role       = true
-  role_name         = "CodeBuildBaseRole_${var.build_project_name}_${data.aws_region.current.name}"
-  role_description  = "CodeBuildBaseRole for ${var.build_project_name} Project in ${data.aws_region.current.name} region."
+  role_name         = "CodebuildExecute_${var.build_project_name}_${data.aws_region.current.name}"
+  role_description  = "CodeBuild Execute Role for ${var.build_project_name} Project in ${data.aws_region.current.name} region."
   role_requires_mfa = false
 
   custom_role_policy_arns = concat([module.codebuild_policy[0].arn], var.build_policy_arns)
