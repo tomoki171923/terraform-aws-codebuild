@@ -26,6 +26,20 @@ variable "queued_timeout" {
   description = "Number of minutes, from 5 to 480 (8 hours), a build is allowed to be queued before it times out."
 }
 
+/*
+  Cache
+*/
+variable "cache_type" {
+  type        = string
+  default     = "LOCAL"
+  description = "Type of storage that will be used for the AWS CodeBuild project cache. Valid values: NO_CACHE, LOCAL, S3. "
+}
+
+variable "cache_modes" {
+  type        = list(string)
+  default     = ["LOCAL_DOCKER_LAYER_CACHE", "LOCAL_SOURCE_CACHE"]
+  description = "(Required when cache type is LOCAL) Specifies settings that AWS CodeBuild uses to store and reuse build dependencies. Valid values: LOCAL_SOURCE_CACHE, LOCAL_DOCKER_LAYER_CACHE, LOCAL_CUSTOM_CACHE."
+}
 
 /*
   Environment
@@ -74,6 +88,7 @@ variable "source_location" {
   default     = "https://github.com/tomoki171923/codebuild-sample.git"
   description = "Location of the source code."
 }
+
 variable "source_buildspec" {
   type        = string
   default     = "buildspec.yml"
@@ -84,6 +99,12 @@ variable "source_git_clone_depth" {
   type        = number
   default     = 0 //Use 0 for a Full.
   description = "Truncate git history to this many commits. Use 0 for a Full checkout which you need to run commands like git branch --show-current."
+}
+
+variable "source_version" {
+  type        = string
+  default     = "main"
+  description = "a pull request, branch name, commit ID, tag, or reference and a commit ID."
 }
 
 /*
