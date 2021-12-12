@@ -68,6 +68,13 @@ variable "environment_image_pull_credentials_type" {
   description = "Type of credentials AWS CodeBuild uses to pull images in your build."
 }
 
+variable "environment_privileged_mode" {
+  type        = bool
+  default     = false
+  description = "Whether to enable running the Docker daemon inside a Docker container."
+}
+
+
 variable "environment_environment_variable" {
   type = list(
     object({
