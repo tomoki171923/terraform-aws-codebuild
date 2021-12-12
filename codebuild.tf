@@ -26,6 +26,7 @@ resource "aws_codebuild_project" "this" {
     image                       = var.environment_image
     type                        = var.environment_type
     image_pull_credentials_type = var.environment_image_pull_credentials_type
+    privileged_mode             = var.environment_privileged_mode
 
     dynamic "environment_variable" {
       for_each = var.environment_environment_variable
